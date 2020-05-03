@@ -1,0 +1,10 @@
+ports:
+  NCS7:
+    - {TYPE: upsr-t3, UPSR: {NUM: 1, STS_NUM: 1, RATE: oc48, MODE: t3, CEM_TYPE: sts1, CEM_GRP: 16001, CEM_FRAME: unframed },
+        CONT: {CONT1: 0/11/2, CONT1_PG: working, CONT2: 0/12/2, CONT2_PG: protect},  
+        T3: {NUM: 1, FRAMING: c-bit, CLK_SRC: recovered, CLK_NUM: 0}}
+    - {TYPE: upsr, UPSR: {NUM: 2, STS_NUM: 2, RATE: oc48, MODE: unframed, CEM_TYPE: sts1, CEM_GRP: 16002, CEM_FRAME: cep },
+        CONT: {CONT1: 0/11/2, CONT1_PG: working, CONT2: 0/12/2, CONT2_PG: protect}}
+    - {TYPE: upsr-vt15, UPSR: {NUM: 3, STS_NUM: 3, RATE: oc48, MODE: vt-15, CEM_TYPE: vt1.5, CEM_GRP: 16003, CEM_FRAME: framed },
+        CONT: {CONT1: 0/11/2, CONT1_PG: working, CONT2: 0/12/2, CONT2_PG: protect},  
+        VT:  {GRP: 1, NUM: 1, CLK_SRC: recovered, CLK_NUM: 2}} 

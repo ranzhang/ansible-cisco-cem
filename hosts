@@ -1,0 +1,11 @@
+[cem_devices]
+NCS7 ansible_host=10.10.10.7 
+
+
+[cem_devices:vars]
+ansible_become=yes
+ansible_become_method=enable
+ansible_user=TEST
+ansible_ssh_pass=ciscolab1
+ansible_network_os=ios
+ansible_port=22

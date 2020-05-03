@@ -1,0 +1,27 @@
+- hosts: NCS7 
+  gather_facts: no
+  connection: network_cli
+
+  roles:
+    - no_upsr 
+  
+  tasks:
+    - name: collecting cem states
+      cli_command: "{{ item }}"
+      loop:
+        - command: show protection-group 
+        - command: show cem circuit
+      vars:
+        ansible_command_timeout: 60
+      register: output
+
+    - name: save output
+      vars:
+        nl: "\n\n"
+      copy:
+        content: " {{nl}} {{output.results[0].item.command}} {{nl}} {{output.results[0].stdout}}
+                   {{nl}} {{output.results[1].item.command}} {{nl}} {{output.results[1].stdout}}
+                   {{nl}}
+                 "
+        dest: "{{inventory_hostname}}.log"
+

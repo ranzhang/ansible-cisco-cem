@@ -1,0 +1,6 @@
+- name: remove upsr protection group config 
+  cli_config:
+    config: "{{ lookup('template', 'no_upsr.j2') }}"
+  vars:
+    ansible_command_timeout: 120
+

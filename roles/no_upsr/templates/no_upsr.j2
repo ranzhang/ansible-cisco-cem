@@ -1,0 +1,22 @@
+{% for intf in ports[inventory_hostname] %}
+
+{% if intf.TYPE == 'upsr-vt15' %}
+controller sonet {{intf.CONT.CONT1}}
+  sts-1 {{intf.UPSR.STS_NUM}}
+  mode vt-15
+  no vtg {{intf.VT.GRP}} t1 {{intf.VT.NUM}} protection-group {{intf.UPSR.NUM}} {{intf.CONT.CONT1_PG}}
+controller sonet {{intf.CONT.CONT2}}
+  sts-1 {{intf.UPSR.STS_NUM}}
+  mode vt-15
+  no vtg {{intf.VT.GRP}} t1 {{intf.VT.NUM}} protection-group {{intf.UPSR.NUM}} {{intf.CONT.CONT2_PG}}
+{% else %}
+controller sonet {{intf.CONT.CONT1}}
+  sts-1 {{intf.UPSR.STS_NUM}}
+  no protection-group {{intf.UPSR.NUM}} {{intf.CONT.CONT1_PG}}
+controller sonet {{intf.CONT.CONT2}}
+  sts-1 {{intf.UPSR.STS_NUM}}
+  no protection-group {{intf.UPSR.NUM}} {{intf.CONT.CONT2_PG}}
+{% endif %}
+
+{% endfor %}
+
